@@ -26,7 +26,8 @@ apple_binary(
     ":iOSBuckExampleAssets",
     ":iOSBuckExampleResource",
     "//Pods/RxAtomic:RxAtomic",
-    "//Pods/RxSwift:RxSwift"
+    "//Pods/RxSwift:RxSwift",
+    "//Pods/RxCocoa:RxCocoa"
   ],
   frameworks = [
     '$SDKROOT/System/Library/Frameworks/Foundation.framework',
