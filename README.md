@@ -42,8 +42,17 @@ post_install do |installer|
       # Copy the file at buck-files/BUCK_pod_name to Pods/pod_name/BUCK,
       # override existing file if needed
       buck_file = buck_files_dir + '/BUCK_' + pod_name
+      bridging_file_name =  pod_name + "-Bridging-Header.h"
+      bridging_header_File = buck_files_dir + "/" + bridging_file_name
+
+      # move BUCK file
       if File.file?(buck_file)
         FileUtils.cp(buck_file, 'Pods/' + pod_name + '/BUCK', :preserve => false)
+      end
+
+      # move briding header file
+      if File.file?(bridging_header_File)
+        FileUtils.cp(bridging_header_File, 'Pods/' + pod_name + '/' + bridging_file_name, :preserve => false)
       end
     end
   end
@@ -214,4 +223,35 @@ apple_library(
         "**/*.c",
     ])
 )
+```
+
+> ## STEP6: Bridging header file need pod
+
+RxCocoa
+```bzl
+apple_library(
+    name = "RxCocoa",
+    preprocessor_flags = [
+        "-fobjc-arc"
+    ],
+    visibility = ["PUBLIC"],
+    bridging_header = "RxCocoa-Bridging-Header.h",
+    swift_version = "4.2",
+     srcs = glob([
+      "**/*.m",
+      "**/*.mm",
+      "**/*.swift",
+    ]),
+    exported_headers = glob([
+      "**/*.h",
+    ]),
+    deps = [
+        "//Pods/RxSwift:RxSwift"
+    ],
+    frameworks = [
+        "$SDKROOT/System/Library/Frameworks/Foundation.framework",
+        "$SDKROOT/System/Library/Frameworks/UIKit.framework"
+    ] 
+)
+
 ```
