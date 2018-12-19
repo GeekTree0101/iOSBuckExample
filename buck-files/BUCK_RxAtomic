@@ -1,0 +1,12 @@
+apple_library(
+    name = "RxAtomic",
+    visibility = ["PUBLIC"],
+    modular = True,
+    swift_version = "4.2",
+    exported_headers = glob([
+        "**/*.h",
+    ]),
+    srcs = glob([
+        "**/*.c",
+    ])
+)

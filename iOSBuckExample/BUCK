@@ -1,0 +1,65 @@
+
+load("//Config:configs.bzl", "binary_configs", "library_configs", "pod_library_configs", "info_plist_substitutions")
+
+apple_asset_catalog(
+    name = "iOSBuckExampleAssets",
+    visibility = ["PUBLIC"],
+    dirs = ["Assets.xcassets"],
+)
+
+apple_resource(
+    name = "iOSBuckExampleResource",
+    visibility = ["PUBLIC"],
+    files = glob(["**/*.storyboard"]),
+)
+
+apple_binary(
+  name = "iOSBuckExampleBinary",
+  visibility = ["PUBLIC"],
+  swift_version = "4.2",
+  configs = binary_configs("iOSBuckExample"),
+  srcs = glob([
+    "main.m",
+    "**/*.swift"
+  ]),
+  deps = [
+    ":iOSBuckExampleAssets",
+    ":iOSBuckExampleResource",
+    "//Pods/RxAtomic:RxAtomic",
+    "//Pods/RxSwift:RxSwift"
+  ],
+  frameworks = [
+    '$SDKROOT/System/Library/Frameworks/Foundation.framework',
+    '$SDKROOT/System/Library/Frameworks/UIKit.framework'
+  ],
+)
+
+xcode_workspace_config(
+    name = "workspace",
+    visibility = ["PUBLIC"],
+    workspace_name = "iOSBuckExample",
+    src_target = ":iOSBuckExampleBundle",
+    additional_scheme_actions = {
+        "Build": {
+            "PRE_SCHEME_ACTIONS": ["echo 'Started Building'"],
+            "POST_SCHEME_ACTIONS": ["echo 'Finished Building'"],
+        },
+    },
+    action_config_names = {"profile": "Profile"},
+)
+
+apple_bundle(
+    name = "iOSBuckExampleBundle",
+    visibility = ["PUBLIC"],
+    extension = "app",
+    binary = ":iOSBuckExampleBinary",
+    product_name = "iOSBuckExample",
+    info_plist = "Info.plist",
+    info_plist_substitutions = info_plist_substitutions("iOSBuckExample"),
+)
+
+apple_package(
+  name = "iOSBuckExamplePackage",
+  bundle = ":iOSBuckExampleBundle",
+)
+

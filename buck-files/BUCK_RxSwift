@@ -1,0 +1,25 @@
+
+apple_library(
+    name = "RxSwift",
+    modular = True,
+    preprocessor_flags = [
+        "-fobjc-arc"
+    ],
+    visibility = ["PUBLIC"],
+    swift_version = "4.2",
+     srcs = glob([
+      "**/*.m",
+      "**/*.mm",
+      "**/*.swift",
+    ]),
+    exported_headers = glob([
+      "**/*.h",
+    ]),
+    deps = [
+        "//Pods/RxAtomic:RxAtomic"
+    ],
+    frameworks = [
+        "$SDKROOT/System/Library/Frameworks/Foundation.framework",
+        "$SDKROOT/System/Library/Frameworks/UIKit.framework"
+    ] 
+)
