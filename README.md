@@ -255,3 +255,14 @@ apple_library(
 )
 
 ```
+
+> ## STEP7: Trace build result 
+
+.buckconfig
+```sh
+
+[httpserver]
+  port = 8000 #<------ trace local server port
+```
+
+<img src="https://github.com/GeekTree0101/iOSBuckExample/blob/master/res/trace_example.jpg" />
