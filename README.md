@@ -188,7 +188,7 @@ apple_library(
     preprocessor_flags = [   
         "-fobjc-arc"
     ],
-    visibility = ["PUBLIC"], # <---------- Must be true!
+    visibility = ["PUBLIC"], # <---------- Recommend!
     swift_version = "4.2",  
      srcs = glob([
       "**/*.m",
