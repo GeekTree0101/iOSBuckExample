@@ -1,0 +1,21 @@
+[cxx]
+  default_platform = iphonesimulator-x86_64
+  combined_preprocess_and_compile = true
+
+[apple]
+  iphonesimulator_target_sdk_version = 9.0
+  iphoneos_target_sdk_version = 9.0
+  xctool_default_destination_specifier = platform=iOS Simulator, name=iPhone 7, OS=12.0
+
+[alias]
+  app = //iOSBuckExample:iOSBuckExampleBundle
+
+[httpserver]
+  port = 8000
+
+[project]
+  ide = xcode
+  ignore = .buckd, \
+           .hg, \
+           .git, \
+           buck-out, \
