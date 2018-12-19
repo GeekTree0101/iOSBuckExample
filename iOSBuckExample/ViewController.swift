@@ -1,14 +1,18 @@
 import UIKit
 import RxSwift
+import RxCocoa
 
 class ViewController: UIViewController {
 
     let disposeBag = DisposeBag()
+    let buttonView = UIButton(type: .custom)
     
     override func viewDidLoad() {
 
         super.viewDidLoad()
         self.view.backgroundColor = .blue   
+
+        buttonView.rx.tap.subscribe().disposed(by: disposeBag)
     }
     
     override func viewDidAppear(_ animated: Bool) {

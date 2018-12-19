@@ -13,6 +13,10 @@
 [httpserver]
   port = 8000
 
+[parser]
+  polyglot_parsing_enabled = true
+  default_build_file_syntax = SKYLARK
+
 [project]
   ide = xcode
   ignore = .buckd, \

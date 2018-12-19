@@ -1,0 +1,24 @@
+apple_library(
+    name = "RxCocoa",
+    preprocessor_flags = [
+        "-fobjc-arc"
+    ],
+    visibility = ["PUBLIC"],
+    bridging_header = "RxCocoa-Bridging-Header.h",
+    swift_version = "4.2",
+     srcs = glob([
+      "**/*.m",
+      "**/*.mm",
+      "**/*.swift",
+    ]),
+    exported_headers = glob([
+      "**/*.h",
+    ]),
+    deps = [
+        "//Pods/RxSwift:RxSwift"
+    ],
+    frameworks = [
+        "$SDKROOT/System/Library/Frameworks/Foundation.framework",
+        "$SDKROOT/System/Library/Frameworks/UIKit.framework"
+    ] 
+)
