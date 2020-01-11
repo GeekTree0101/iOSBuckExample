@@ -27,10 +27,10 @@ def bundle_identifier(name):
     return "com.iOSBuckExample.%s" % name
 
 def library_configs():
-    lib_specific_config = {
+    library_config = {
         "SWIFT_WHOLE_MODULE_OPTIMIZATION": "YES",
     }
-    library_config = SHARED_CONFIGS + lib_specific_config
+    library_config.update(SHARED_CONFIGS)
     configs = {
         "Debug": library_config,
         "Profile": library_config,
@@ -38,12 +38,12 @@ def library_configs():
     return configs
 
 def binary_configs(name):
-    binary_specific_config = {
+    binary_config = {
         "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES": "YES",
         "DEVELOPMENT_LANGUAGE": "Swift",
         "PRODUCT_BUNDLE_IDENTIFIER": bundle_identifier(name),
     }
-    binary_config = SHARED_CONFIGS + binary_specific_config
+    binary_config.update(SHARED_CONFIGS)
     configs = {
         "Debug": binary_config,
         "Profile": binary_config,

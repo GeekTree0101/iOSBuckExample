@@ -1,4 +1,3 @@
-
 load("//Config:configs.bzl", "binary_configs", "library_configs", "pod_library_configs", "info_plist_substitutions")
 
 apple_asset_catalog(
@@ -25,9 +24,9 @@ apple_binary(
   deps = [
     ":iOSBuckExampleAssets",
     ":iOSBuckExampleResource",
-    "//Pods/RxAtomic:RxAtomic",
     "//Pods/RxSwift:RxSwift",
-    "//Pods/RxCocoa:RxCocoa"
+    "//Pods/RxCocoa:RxCocoa",
+    "//Pods/RxRelay:RxRelay"
   ],
   frameworks = [
     '$SDKROOT/System/Library/Frameworks/Foundation.framework',

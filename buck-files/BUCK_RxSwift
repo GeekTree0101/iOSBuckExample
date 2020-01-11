@@ -15,9 +15,6 @@ apple_library(
     exported_headers = glob([
       "**/*.h",
     ]),
-    deps = [
-        "//Pods/RxAtomic:RxAtomic"
-    ],
     frameworks = [
         "$SDKROOT/System/Library/Frameworks/Foundation.framework",
         "$SDKROOT/System/Library/Frameworks/UIKit.framework"

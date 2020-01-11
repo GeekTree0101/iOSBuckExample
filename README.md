@@ -8,11 +8,22 @@
 ```sh
 brew tap facebook/fb
 brew install buck
-brew tap caskroom/cask
-brew tap caskroom/versions
-brew cask install java8
 brew install ant python git watchman
 pod install
+```
+
+> Java 1.8
+```sh
+brew cask install adoptopenjdk/openjdk/adoptopenjdk8
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+```
+
+[DEPRECATED] you don't needs more caskroom on brew
+cask is already integrated onto brew as default :]
+
+```sh
+brew tap caskroom/cask
+brew tap caskroom/versions
 ```
 
 ## Run
@@ -135,7 +146,6 @@ apple_binary(
   deps = [
     ":iOSBuckExampleAssets",
     ":iOSBuckExampleResource",
-    "//Pods/RxAtomic:RxAtomic",
     "//Pods/RxSwift:RxSwift"
   ],
   frameworks = [
@@ -198,9 +208,6 @@ apple_library(
     exported_headers = glob([
       "**/*.h",
     ]),
-    deps = [
-        "//Pods/RxAtomic:RxAtomic" . # <---------- Other Pod dependency at here!
-    ],
     frameworks = [
         "$SDKROOT/System/Library/Frameworks/Foundation.framework",   # <----- Frameworks!
         "$SDKROOT/System/Library/Frameworks/UIKit.framework"
